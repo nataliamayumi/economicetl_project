@@ -3,8 +3,8 @@
 import warnings
 import pandas as pd
 import numpy as np
-import coleta_dados_olinda
-import coleta_dados_sidra
+import extract_data_bacen
+import extract_data_sidra
 warnings.filterwarnings("ignore")
 
 def project_gdp_features(path_data):
@@ -19,8 +19,8 @@ def project_gdp_features(path_data):
     - Combined DataFrame with projected GDP index values.
     """
     # Load observed and expectations datasets
-    df_obs = coleta_dados_sidra.get_ibge_gdp(path_data)
-    df_exp = coleta_dados_olinda.get_focus_gdp(path_data)
+    df_obs = extract_data_sidra.get_ibge_gdp(path_data)
+    df_exp = extract_data_bacen.get_focus_gdp(path_data)
     df_obs = df_obs[df_obs.index > '2013-12-01']  # Filter data starting from 2014
 
     # Merge the datasets into a single DataFrame
